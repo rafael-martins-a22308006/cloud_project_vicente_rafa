@@ -183,5 +183,5 @@ resource "aws_db_instance" "db" {
 
   tags = {
     Name = "cloud-dev-rds"
-  }
-}
+   }
+} 
