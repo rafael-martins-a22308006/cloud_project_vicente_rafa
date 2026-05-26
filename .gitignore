@@ -1,0 +1,11 @@
+*.pem
+*.zip
+*.rar
+*.7z
+*.exe
+*.msi
+
+.terraform/
+terraform/.terraform/
+terraform.tfstate
+terraform/terraform.tfstate

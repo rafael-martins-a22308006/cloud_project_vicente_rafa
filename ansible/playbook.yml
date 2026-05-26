@@ -1,0 +1,24 @@
+- hosts: web
+  become: true
+
+  tasks:
+    - name: Instalar Docker
+      dnf:
+        name: docker
+        state: present
+
+    - name: Iniciar Docker
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Remover container antigo
+      command: docker rm -f hello-world-app
+      ignore_errors: yes
+
+    - name: Fazer pull da imagem Docker
+      command: docker pull vicentepgama/cloud-project-app:latest
+
+    - name: Correr container
+      command: docker run -d --name hello-world-app -p 80:80 vicentepgama/cloud-project-app:latest
