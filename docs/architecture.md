@@ -1,32 +1,93 @@
-# Arquitetura do Projeto
+# Arquitetura do Sistema
 
-## Abordagem
+## Abordagem Escolhida
 
-Escolhemos o Approach A 
+Foi utilizada a Approach A, focada na construção e automatização de uma infraestrutura cloud completa.
 
-O projeto vai usar o sistema de microserviços fornecido no laboratório. O foco principal será Cloud Engineering: infraestrutura, automação, deployment, CI/CD e monitorização.
+---
 
-## Arquitetura Inicial
+## Visão Geral da Arquitetura
 
-Utilizador → Internet → Subnet Pública → Serviços Web/API → Subnet Privada → Base de Dados
+```text
+Internet
+    |
+    v
+Internet Gateway
+    |
+    v
+Subnets Públicas
+    |
+    v
+Instância EC2
+    |
+    +-------> Amazon SQS
+    |
+    +-------> Amazon RDS PostgreSQL
+                  |
+                  v
+            Subnets Privadas
+```
 
-## Região AWS
+---
 
-us-east-1
+## Componentes
 
-## Convenção de Nomes
+### Rede
 
-Formato:
-<projeto>-<ambiente>-<recurso>
+A infraestrutura de rede é composta por:
 
-Exemplos:
-- cloud-dev-vpc
-- cloud-dev-subnet-public
-- cloud-dev-ec2
+* VPC AWS
+* Duas subnets públicas
+* Duas subnets privadas
+* Internet Gateway
+* Route Tables
+* Security Groups
 
-## Estratégia de Branches
+### Computação
 
-- main → código estável
-- infra/* → infraestrutura
-- feat/* → funcionalidades
-- fix/* → correções
+Uma instância Amazon EC2 é utilizada para alojar a aplicação e executar os containers Docker.
+
+### Base de Dados
+
+A persistência de dados é assegurada através de uma instância Amazon RDS PostgreSQL.
+
+A base de dados encontra-se numa subnet privada, não estando acessível diretamente pela Internet.
+
+### Sistema de Mensagens
+
+O projeto utiliza:
+
+* Amazon SQS
+* Dead Letter Queue (DLQ)
+
+para comunicação assíncrona entre serviços.
+
+### Automatização
+
+A infraestrutura é criada e gerida através de:
+
+* Terraform
+* GitHub Actions
+* Ansible
+
+---
+
+## Fluxo de Dados
+
+1. O Service A produz mensagens.
+2. As mensagens são enviadas para a fila Amazon SQS.
+3. O Service B consome as mensagens da fila.
+4. Os dados podem ser armazenados na base de dados PostgreSQL.
+5. Alterações à infraestrutura são aplicadas automaticamente através do GitHub Actions.
+
+---
+
+## Segurança
+
+Foram implementadas as seguintes medidas:
+
+* Base de dados em subnets privadas.
+* Security Groups para controlo de acessos.
+* SSH limitado ao endereço IP do administrador.
+* Utilização de OIDC para autenticação do GitHub Actions.
+* Armazenamento seguro de credenciais através de GitHub Secrets.
