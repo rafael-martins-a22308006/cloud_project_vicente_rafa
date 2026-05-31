@@ -1,19 +1,23 @@
+version: '3.8'
+
 services:
   service-a:
     build: ./service-a
+    env_file:
+      - .env
     ports:
       - "5000:5000"
     depends_on:
       - service-b
-    
 
   service-b:
     build: ./service-b
+    env_file:
+      - .env
     ports:
       - "5001:5001"
     depends_on:
       - db
-    
 
   db:
     image: postgres:15

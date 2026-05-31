@@ -9,3 +9,7 @@ output "ec2_public_ip" {
 output "rds_endpoint" {
   value = aws_db_instance.db.endpoint
 }
+
+output "queue_url" {
+  value = aws_sqs_queue.main_queue.id
+}
