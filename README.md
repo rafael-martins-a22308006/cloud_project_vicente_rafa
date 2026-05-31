@@ -96,3 +96,9 @@ Após o deploy são disponibilizados:
 * Implementar CI/CD utilizando GitHub Actions
 * Utilizar serviços AWS de forma integrada
 * Aplicar boas práticas de segurança
+
+## Pipeline CI/CD
+
+A Figura 1 apresenta uma execução bem-sucedida do pipeline GitHub Actions responsável pela validação e implementação automática da infraestrutura AWS.
+
+![GitHub Actions](image.png)
