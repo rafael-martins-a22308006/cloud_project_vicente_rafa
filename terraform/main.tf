@@ -8,10 +8,10 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name        = "cloud-dev-vpc"
-    Project     = "cloud-project"
-    Environment = "dev"
-    ManagedBy   = "terraform"
+    Name        = "cloud-projectc"
+    Project     = "Vicente-Rafael"
+    Environment = "CloudComputing"
+    ManagedBy   = "Production"
   }
 }
 

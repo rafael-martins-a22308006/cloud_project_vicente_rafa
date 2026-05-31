@@ -1,0 +1,20 @@
+name: PR Checks
+
+on:
+  pull_request:
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint
+        run: echo "lint"
+
+      - name: Test
+        run: echo "test"
+
+      - name: Terraform Plan
+        run: terraform plan

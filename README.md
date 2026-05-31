@@ -1,1 +1,14 @@
-# cloud_project_vicente_rafa
+# Cloud Project
+
+## Tecnologias
+- AWS
+- Terraform
+- Docker
+- Ansible
+- GitHub Actions
+
+## Deploy
+
+terraform apply
+
+ansible-playbook ...
