@@ -140,7 +140,7 @@ A Figura apresenta a execução local dos serviços através do Docker Compose. 
 
 A Figura apresenta a estrutura final do projeto. A organização adotada separa claramente a infraestrutura, a configuração, os serviços da aplicação e a documentação
 
-![Organizacao](image.png)
+![Organizacao](docs/image.png)
 
 ## Arquitetura da Solução
 
