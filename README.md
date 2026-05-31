@@ -101,4 +101,4 @@ Após o deploy são disponibilizados:
 
 A Figura 1 apresenta uma execução bem-sucedida do pipeline GitHub Actions responsável pela validação e implementação automática da infraestrutura AWS.
 
-![GitHub Actions](image.png)
+![GitHub Actions](docs/image.png)
