@@ -39,16 +39,7 @@ O projeto inclui:
 
 ## Estrutura do Projeto
 
-
-├── terraform/
-├── ansible/
-├── semana2/
-│   ├── service-a/
-│   ├── service-b/
-│   └── docker-compose.yml
-├── docs/
-├── .github/workflows/
-└── README.md
+![Estrutura](docs/imagens/estrutura.png)
 
 
 ## Execução Local
@@ -118,7 +109,7 @@ A Figura apresenta a VPC criada através do Terraform. Esta rede constitui a bas
 ## Instância EC2
 
 A Figura mostra a instância EC2 responsável pela execução da aplicação. A instância encontra-se ativa e acessível através do endereço IP público atribuído pela AWS
-![AWS EC2](docs/imagens/EC2.png.png)
+![AWS EC2](docs/imagens/EC2.png)
 
 ## Base de Dados PostgreSQL
 
@@ -149,66 +140,11 @@ A Figura apresenta a execução local dos serviços através do Docker Compose. 
 
 A Figura apresenta a estrutura final do projeto. A organização adotada separa claramente a infraestrutura, a configuração, os serviços da aplicação e a documentação
 
-C:.
-│   .gitignore
-│   cloud-key.pem
-│   Dockerfile
-│   index.html
-│   README.md
-│   terraform.tfstate
-│   
-├───.github
-│   └───workflows
-│           deploy.yml
-│           docker.yml
-│           pr-check.yml
-│           
-├───ansible
-│       inventory.ini
-│       playbook.yml
-│       
-├───docs
-        imagens/
-│       architecture.md
-│       deployment.md
-│       security.md
-│       
-├───semana2
-│   │   .env
-│   │   docker-compose.yml
-│   │   
-│   ├───service-a
-│   │       Dockerfile
-│   │       producer.py
-│   │       requirements.txt
-│   │       
-│   └───service-b
-│           consumer.py
-│           Dockerfile
-│           requirements.txt
-│           
-└───terraform
-    │   .terraform.lock.hcl
-    │   backend.tf
-    │   main.tf
-    │   outputs.tf
-    │   terraform.tfvars
-    │   variables.tf
-    │   
-    └───.terraform
-        │   terraform.tfstate
-        │   
-        └───providers
-            └───registry.terraform.io
-                └───hashicorp
-                    └───aws
-                        └───6.46.0
-                            └───windows_amd64
-                                    LICENSE.txt
-                                    terraform-provider-aws_v6.46.0_x5.exe
-                                    
+![Organizacao](image.png)
 
 ## Arquitetura da Solução
 
 A Figura apresenta uma visão geral da arquitetura implementada. A solução utiliza uma instância EC2 para execução da aplicação, uma base de dados PostgreSQL para persistência de dados e o Amazon SQS para comunicação assíncrona entre serviços
+
+
 ![Arquitetura](docs/imagens/arquitetura.png)
