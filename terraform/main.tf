@@ -107,10 +107,11 @@ resource "aws_security_group" "web" {
   }
 
   ingress {
+    description = "SSH from my IP only"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["94.63.39.118/32"]
   }
 
   egress {
@@ -173,7 +174,7 @@ resource "aws_db_instance" "db" {
 
   db_name  = "appdb"
   username = "adminuser"
-  password = "ChangeMe12345!"
+  password = var.db_password
 
   skip_final_snapshot = true
   publicly_accessible = false
@@ -183,8 +184,8 @@ resource "aws_db_instance" "db" {
 
   tags = {
     Name = "cloud-dev-rds"
-   }
-} 
+  }
+}
 
 resource "aws_sqs_queue" "dlq" {
   name = "cloud-project-dlq"

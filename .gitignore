@@ -1,11 +1,19 @@
+# Secrets
+.env
+*.env
 *.pem
+*.tfvars
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+
+# Archives
 *.zip
 *.rar
 *.7z
-*.exe
-*.msi
 
-.terraform/
-terraform/.terraform/
-terraform.tfstate
-terraform/terraform.tfstate
+# Python
+__pycache__/
+*.pyc
