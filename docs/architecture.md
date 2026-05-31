@@ -2,92 +2,100 @@
 
 ## Abordagem Escolhida
 
-Foi utilizada a Approach A, focada na construção e automatização de uma infraestrutura cloud completa.
+Foi utilizada a Approach A 
+
+O projeto demonstra a utilização de serviços AWS, Infrastructure as Code (IaC), automação de deploy e comunicação assíncrona entre serviços
 
 ---
 
 ## Visão Geral da Arquitetura
 
-```text
-Internet
-    |
-    v
-Internet Gateway
-    |
-    v
-Subnets Públicas
-    |
-    v
-Instância EC2
-    |
-    +-------> Amazon SQS
-    |
-    +-------> Amazon RDS PostgreSQL
-                  |
-                  v
-            Subnets Privadas
-```
+A solução é composta por:
 
----
-
-## Componentes
-
-### Rede
-
-A infraestrutura de rede é composta por:
-
-* VPC AWS
-* Duas subnets públicas
-* Duas subnets privadas
+* Amazon VPC
 * Internet Gateway
-* Route Tables
-* Security Groups
-
-### Computação
-
-Uma instância Amazon EC2 é utilizada para alojar a aplicação e executar os containers Docker.
-
-### Base de Dados
-
-A persistência de dados é assegurada através de uma instância Amazon RDS PostgreSQL.
-
-A base de dados encontra-se numa subnet privada, não estando acessível diretamente pela Internet.
-
-### Sistema de Mensagens
-
-O projeto utiliza:
-
+* Amazon EC2
+* Amazon RDS PostgreSQL
 * Amazon SQS
 * Dead Letter Queue (DLQ)
 
-para comunicação assíncrona entre serviços.
-
-### Automatização
-
-A infraestrutura é criada e gerida através de:
-
-* Terraform
-* GitHub Actions
-* Ansible
+A infraestrutura é gerida através do Terraform e implementada automaticamente utilizando GitHub Actions
 
 ---
 
-## Fluxo de Dados
+## Design de Rede
 
-1. O Service A produz mensagens.
-2. As mensagens são enviadas para a fila Amazon SQS.
-3. O Service B consome as mensagens da fila.
-4. Os dados podem ser armazenados na base de dados PostgreSQL.
-5. Alterações à infraestrutura são aplicadas automaticamente através do GitHub Actions.
+A infraestrutura utiliza uma VPC com o bloco CIDR 10.0.0.0/16.
+
+Foram criadas:
+
+* 2 subnets públicas
+* 2 subnets privadas
+
+As subnets públicas alojam a instância EC2.
+
+As subnets privadas alojam a base de dados PostgreSQL.
+
+O acesso à Internet é realizado através de um Internet Gateway.
+
+A comunicação entre componentes é controlada através de Security Groups.
 
 ---
 
-## Segurança
+## Comunicação Entre Serviços
 
-Foram implementadas as seguintes medidas:
+O sistema é composto por dois serviços:
 
-* Base de dados em subnets privadas.
-* Security Groups para controlo de acessos.
-* SSH limitado ao endereço IP do administrador.
-* Utilização de OIDC para autenticação do GitHub Actions.
-* Armazenamento seguro de credenciais através de GitHub Secrets.
+* Service A
+* Service B
+
+O Service A produz mensagens.
+
+As mensagens são enviadas para uma fila Amazon SQS.
+
+O Service B consome as mensagens da fila e processa a informação recebida.
+
+Esta abordagem reduz o acoplamento entre componentes e melhora a escalabilidade da solução.
+
+---
+
+## Componentes Event-Driven
+
+A comunicação assíncrona é realizada através do Amazon SQS.
+
+Quando uma mensagem falha repetidamente o processamento, é enviada para uma Dead Letter Queue (DLQ).
+
+Esta abordagem aumenta a resiliência da aplicação e facilita a identificação de erros.
+
+---
+
+## Principais Decisões Técnicas
+
+Durante o desenvolvimento do projeto foram tomadas as seguintes decisões:
+
+* Utilização de Terraform para Infrastructure as Code
+* Utilização de GitHub Actions para CI/CD
+* Utilização de OIDC em vez de Access Keys AWS
+* Utilização de Amazon RDS PostgreSQL para persistência de dados
+* Utilização de Amazon SQS para comunicação assíncrona
+* Utilização de Docker para execução da aplicação
+* Utilização de Ansible para configuração da EC2
+
+---
+
+## Limitações e Melhorias Futuras
+
+Apesar de cumprir os objetivos definidos, existem algumas limitações:
+
+* Apenas existe um ambiente principal de desenvolvimento
+* A aplicação utiliza apenas uma instância EC2
+* Não existe balanceamento de carga
+* Não existe monitorização centralizada
+
+Como melhorias futuras poderão ser implementados:
+
+* Ambiente de produção separado.
+* Amazon ECS ou Kubernetes.
+* Amazon CloudWatch.
+* Auto Scaling.
+* Deploy completo da aplicação através de Ansible.

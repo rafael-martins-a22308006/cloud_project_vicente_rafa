@@ -88,6 +88,7 @@ Após o deploy são disponibilizados:
 * Utilizar serviços AWS de forma integrada
 * Aplicar boas práticas de segurança
 
+
 ## Pipeline CI/CD
 
 A Figura apresenta uma execução bem-sucedida do pipeline GitHub Actions responsável pela validação e implementação automática da infraestrutura AWS
@@ -140,7 +141,7 @@ A Figura apresenta a execução local dos serviços através do Docker Compose. 
 
 A Figura apresenta a estrutura final do projeto. A organização adotada separa claramente a infraestrutura, a configuração, os serviços da aplicação e a documentação
 
-![Organizacao](docs/image.png)
+![Organizacao](docs/imagens/image.png)
 
 ## Arquitetura da Solução
 

@@ -65,6 +65,18 @@ docker compose up --build
 
 ---
 
+## Workflow de Deploy
+
+O processo de implementação segue os seguintes passos:
+
+1. Inicialização do Terraform.
+2. Validação da configuração.
+3. Geração do plano.
+4. Aplicação das alterações.
+5. Disponibilização dos outputs.
+
+---
+
 ## Deploy Automático
 
 O projeto utiliza GitHub Actions para automatizar o processo de deploy.
