@@ -5,6 +5,8 @@
 * Vicente Gama
 * Rafael Martins
 
+![Papeis](docs/imagens/papeis.png)  
+
 ## Descrição do Projeto
 
 Este projeto foi desenvolvido no âmbito da unidade curricular de Cloud  e demonstra a implementação de uma infraestrutura cloud utilizando serviços AWS e Infrastructure as Code 
