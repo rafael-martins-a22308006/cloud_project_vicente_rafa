@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  packages: write
 
 jobs:
   terraform:
@@ -22,6 +23,25 @@ jobs:
         with:
           aws-region: us-east-1
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Service A image
+        run: docker build -t ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-a:latest ./semana2/service-a
+
+      - name: Push Service A image
+        run: docker push ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-a:latest
+
+      - name: Build Service B image
+        run: docker build -t ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-b:latest ./semana2/service-b
+
+      - name: Push Service B image
+        run: docker push ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-b:latest
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
