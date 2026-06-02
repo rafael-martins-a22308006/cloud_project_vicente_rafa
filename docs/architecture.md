@@ -80,6 +80,7 @@ Durante o desenvolvimento do projeto foram tomadas as seguintes decisões:
 * Utilização de Amazon SQS para comunicação assíncrona
 * Utilização de Docker para execução da aplicação
 * Utilização de Ansible para configuração da EC2
+* Utilização de Terraform Modules para separação lógica da infraestrutura
 
 ---
 

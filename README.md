@@ -9,7 +9,7 @@
 
 ## Descrição do Projeto
 
-Este projeto foi desenvolvido no âmbito da unidade curricular de Cloud  e demonstra a implementação de uma infraestrutura cloud utilizando serviços AWS e Infrastructure as Code 
+Este projeto foi desenvolvido no âmbito da unidade curricular de Cloud e demonstra a implementação de uma infraestrutura cloud utilizando serviços AWS e Infrastructure as Code 
 
 Toda a estrutura é criada automaticamente através do Terraform e gerida através de um pipeline CI/CD implementado com GitHub Actions
 
@@ -42,7 +42,6 @@ O projeto inclui:
 ## Estrutura do Projeto
 
 ![Estrutura](docs/imagens/estrutura.png)
-
 
 ## Execução Local
 
@@ -151,3 +150,9 @@ A Figura apresenta uma visão geral da arquitetura implementada. A solução uti
 
 
 ![Arquitetura](docs/imagens/arquitetura.png)
+
+# Destroy 
+4.34min
+
+# Apply
+5.7min
