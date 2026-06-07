@@ -96,13 +96,13 @@ resource "aws_security_group" "web" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   ingress {
-    description = "admin privado"
+    description = "SSH for Ansible from GitHub Actions"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["94.63.39.118/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
