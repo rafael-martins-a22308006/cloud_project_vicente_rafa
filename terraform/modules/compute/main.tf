@@ -14,6 +14,8 @@ resource "aws_instance" "app" {
   subnet_id              = var.public_subnet_1_id
   vpc_security_group_ids = [var.web_sg_id]
 
+  key_name = "cloud-key"
+
   tags = {
     Name = "cloud-dev-app-ec2"
   }
