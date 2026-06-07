@@ -80,17 +80,20 @@ O processo de implementação segue os seguintes passos:
 
 ## Deploy Automático
 
-O projeto utiliza GitHub Actions para automatizar o processo de deploy
+O projeto utiliza GitHub Actions para automatizar todo o processo de implementação.
 
-Sempre que é realizado um push para a branch main, são executadas as seguintes tarefas:
+Sempre que é realizado um push para a branch `main`, são executadas as seguintes etapas:
 
-1. Autenticação AWS através de OIDC
-2. Login no GitHub Container Registry 
-3. Construção das imagens Docker dos serviços
-4. Publicação das imagens Docker no GHCR
-5. Inicialização e validação do Terraform
-6. Aplicação automática da infraestrutura AWS
-7. Disponibilização dos outputs Terraform
+1. Autenticação na AWS através de OIDC
+2. Inicialização e validação da infraestrutura Terraform
+3. Aplicação das alterações na infraestrutura AWS
+4. Obtenção dos outputs necessários para a configuração dos serviços
+5. Execução do Ansible para configuração automática da instância EC2
+6. Instalação e atualização dos componentes necessários na EC2
+7. Implementação da aplicação e respetivos containers
+8. Disponibilização da aplicação para utilização
+
+
 
 ---
 

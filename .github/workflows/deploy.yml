@@ -63,3 +63,24 @@ jobs:
       - name: Show Outputs
         working-directory: terraform
         run: terraform output
+
+      - name: Install Ansible
+        run: |
+          sudo apt update
+          sudo apt install -y ansible
+
+      - name: Configure SSH key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > cloud-key.pem
+          chmod 600 cloud-key.pem
+
+      - name: Generate Ansible inventory
+        run: |
+          EC2_IP=$(cd terraform && terraform output -raw ec2_public_ip)
+          echo "[web]" > ansible/inventory.ini
+          echo "$EC2_IP ansible_user=ec2-user ansible_ssh_private_key_file=../cloud-key.pem ansible_ssh_common_args='-o StrictHostKeyChecking=no'" >> ansible/inventory.ini
+          cat ansible/inventory.ini
+
+      - name: Run Ansible playbook
+        working-directory: ansible
+        run: ansible-playbook -i inventory.ini playbook.yml

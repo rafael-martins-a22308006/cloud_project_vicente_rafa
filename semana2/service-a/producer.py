@@ -9,7 +9,7 @@ QUEUE_URL = "https://sqs.us-east-1.amazonaws.com/634119227761/cloud-project-queu
 
 sqs.send_message(
     QueueUrl=QUEUE_URL,
-    MessageBody="Hello from Service A"
+    MessageBody="Mensagem do texto A"
 )
 
 print("Mensagem enviada")

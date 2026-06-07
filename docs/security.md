@@ -2,15 +2,15 @@
 
 ## Gestão de Identidades
 
-O acesso aos recursos AWS é realizado através de IAM Roles.
+O acesso aos recursos AWS é realizado através de IAM Roles
 
-O GitHub Actions autentica-se utilizando OpenID Connect (OIDC), eliminando a necessidade de armazenar chaves AWS permanentes.
+O GitHub Actions autentica-se utilizando OpenID Connect (OIDC), eliminando a necessidade de armazenar chaves AWS permanentes
 
 ---
 
 ## Gestão de Secrets
 
-Informação sensível não é armazenada no código-fonte.
+Informação sensível não é armazenada no código-fonte
 
 São utilizados GitHub Secrets para armazenar:
 
@@ -27,14 +27,14 @@ TF_VAR_db_password
 
 Permite:
 
-* HTTP (porta 80) para acesso à aplicação.
-* SSH (porta 22) apenas a partir do IP do administrador.
+* HTTP (porta 80) para acesso à aplicação
+* SSH (porta 22) apenas a partir do IP do administrador
 
 ### Security Group da Base de Dados
 
 Permite:
 
-* PostgreSQL (porta 5432) apenas a partir da instância EC2.
+* PostgreSQL (porta 5432) apenas a partir da instância EC2
 
 ---
 
@@ -42,9 +42,9 @@ Permite:
 
 A instância PostgreSQL encontra-se:
 
-* Em subnets privadas.
-* Sem acesso público.
-* Protegida por Security Groups.
+* Em subnets privadas
+* Sem acesso público
+* Protegida por Security Groups
 
 ---
 

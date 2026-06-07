@@ -13,12 +13,22 @@
         state: started
         enabled: true
 
-    - name: Remover container antigo
-      command: docker rm -f hello-world-app
+    - name: Remover container antigo Service A
+      command: docker rm -f service-a
       ignore_errors: yes
 
-    - name: Fazer pull da imagem Docker
-      command: docker pull vicentepgama/cloud-project-app:latest
+    - name: Remover container antigo Service B
+      command: docker rm -f service-b
+      ignore_errors: yes
 
-    - name: Correr container
-      command: docker run -d --name hello-world-app -p 80:80 vicentepgama/cloud-project-app:latest
+    - name: Fazer pull da imagem Service A
+      command: docker pull ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-a:latest
+
+    - name: Fazer pull da imagem Service B
+      command: docker pull ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-b:latest
+
+    - name: Correr Service A
+      command: docker run -d --name service-a ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-a:latest
+
+    - name: Correr Service B
+      command: docker run -d --name service-b ghcr.io/rafael-martins-a22308006/cloud_project_vicente_rafa/service-b:latest

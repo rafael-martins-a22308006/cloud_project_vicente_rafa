@@ -152,7 +152,7 @@ A Figura apresenta uma visão geral da arquitetura implementada. A solução uti
 ![Arquitetura](docs/imagens/arquitetura.png)
 
 # Destroy 
-4.34min
+4,34min
 
 # Apply
-5.7min
+5,07min
